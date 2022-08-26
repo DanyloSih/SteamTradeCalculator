@@ -1,0 +1,57 @@
+﻿<Window x:Class="SteamTradeCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cElemens="clr-namespace:SteamTradeCalculator.CustomElements"
+        xmlns:local="clr-namespace:SteamTradeCalculator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox x:Name="CalculationsBox" Header="Calculations" Grid.Column="0">
+            <Grid VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Price: " HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <cElemens:FloatBox Grid.Column="1" Margin="5,0,0,0" Grid.Row ="0" MaxLines="1"
+                        FloatValue="{Binding Path=PriceValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        VerticalContentAlignment="Center"/>
+                </Grid>
+                <Slider Value="{Binding Path=PriceValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        Grid.Row="1"/>
+                <Label Content="{Binding Path=PriceValue, Mode=TwoWay}" Grid.Row="2"/>
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Column="1" Margin="15,17,15,15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button VerticalAlignment="Top" Height="25" 
+                    Content="Start browser" Click="OnStartFirefoxButtonClick" Margin="15,5,15,5"/>
+            
+            <Button VerticalAlignment="Top" Height="25" Grid.Row="1" 
+                    Content="Next page" Click="OnNextButtonClicked" Margin="15,5,15,5"/>
+            
+            <Image x:Name="DriverDebugImage" Grid.Row="2" Source="/Resources/Images/broadcastTest.jpg"/>
+
+            <ListBox Name="BuffOutputListBox" Grid.Row="3"></ListBox>
+        </Grid>
+    </Grid>
+</Window>
